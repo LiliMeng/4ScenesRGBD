@@ -1,22 +1,21 @@
 clear all;
 close all;
 
-%PoseFileName=dir('/Users/jimmy/Desktop/images/TUM_SLAM/freiburg3_long_office_household/seq-01/*.txt');
 
-%numFiles=size(PoseFileName,1);
+N=1100
 
-for i = 1:3925
-  poseFileName = sprintf('/Users/jimmy/Desktop/images/4_scenes/office1/gates362/data/frame-%06d.pose.txt', i-1);
-  pose=load(poseFileName);
-  
-  for j=1:3
-      tran(i,j)=pose(j,4);
-  end
-end
+posenet_format = '/Users/jimmy/Desktop/RGBD_4Scenes/kitchen/test.txt';
+fileID = fopen(posenet_format,'w');
 
-transFileName = sprintf('/Users/jimmy/Desktop/RGBD_4Scenes/data_preparation/trans.txt');
-fileID = fopen(transFileName,'w');
-for i=1:3925
-    fprintf(fileID, '%.10f %.10f %.10f \n', tran(i,1), tran(i,2), tran(i,3));
+
+
+for i = 1:357
+  poseRTFileName = sprintf('/Users/jimmy/Desktop/images/4_scenes/apt1/kitchen/data/frame-%06d.pose.txt', i-1);
+  PoseRT=load(poseRTFileName);
+  PoseTQ=PoseRT2PoseTQ(PoseRT);  
+  rgb_filename=sprintf('image/frame-%06d.color.png', i-1);
+  fprintf(fileID, '%s %.10f %.10f %.10f %10f %.10f %.10f %10f\n', rgb_filename, PoseQT(1),PoseQT(2),PoseQT(3),PoseQT(4),PoseQT(5),PoseQT(6),PoseQT(7));
 end
 fclose(fileID);
+     
+
