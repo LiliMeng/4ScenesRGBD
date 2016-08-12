@@ -25,7 +25,7 @@ width = args.width
 height = args.height
 
 
-from i in range(start_index, end_index):
+for i in range(start_index, end_index):
     file1 = '%s/frame-%06d.color.jpg' % (from_folder, i)
     file2 = '%s/frame-%06d.color.png' % (to_folder, i)
 
