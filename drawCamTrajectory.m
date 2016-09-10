@@ -5,7 +5,7 @@ set(groot,'DefaultFigureRenderer','painters')
 
 
 cameraSize=0.001;
-for i = 1:30
+for i = 1:356
   poseRTFileName = sprintf('/home/lci/workspace/apt1/kitchen/data/frame-%06d.pose.txt', i-1);
   PoseRT=load(poseRTFileName);
  
@@ -38,18 +38,18 @@ for i = 1:30
   xlabel('X (m)');
   ylabel('Y (m)');
   zlabel('Z (m)');
-  xlim([-2.10, -2.00])
-  ylim([-0.75, -0.60])
-  zlim([1.90,2.05])
+  %xlim([-2.10, -2.00])
+ % ylim([-0.75, -0.60])
+ % zlim([1.90,2.05])
 
   hold on;
   
-  pause(0.5);
+ % pause(0.5);
   drawnow();
   
 
 end
-totalT
+totalT;
 max(totalT(:,1))
 min(totalT(:,1))
 
