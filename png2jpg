@@ -1,0 +1,19 @@
+#!/usr/bin/env python2
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Oct 18 16:51:37 2016
+
+@author: lci
+"""
+
+from PIL import Image
+
+folder_input = '/media/lci/storage/KingsCollege/seq1'
+folder_output = '/media/lci/storage/KingsCollege/seq1_jpg'
+frame_num = 261
+
+for i in range(1, frame_num):
+    file1 = '%s/frame%05d.png' % (folder_input, i)
+    file2 = '%s/frame%05d.jpg' % (folder_output, i)
+    im = Image.open(file1)
+    im.convert('RGB').save(file2, 'JPEG')
