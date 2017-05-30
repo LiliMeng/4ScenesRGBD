@@ -1,0 +1,27 @@
+clear all;
+close all;
+
+for i=1:349
+    poseRTFileName1 = sprintf('/media/lci/storage/4scenes/apt2/living/apt2_living_point_line_estimated_poses/camera_%06d.txt',i-1);
+
+    fid=fopen(poseRTFileName1);
+    firstline=textscan(fid, '%[^\n]', 1, 'HeaderLines', 1)
+
+    str = char(firstline{1})  % Convert it to a character array (string).
+
+    frame_num=str2double(regexp(str,'\d{6}','match'))
+    
+    fid=fopen(poseRTFileName1);
+    data = textscan(fid, '%f %f %f %f ',4,'HeaderLines',3, 'delimiter', '\n')
+
+
+     PoseRT1=cell2mat(data)
+  
+    poseRTFileName = sprintf('/media/lci/storage/4scenes/apt2/living/estimated_poses/estimate_camera-%06d.txt', frame_num);
+    fileID1= fopen(poseRTFileName,'w');
+    for j=1:4
+        fprintf(fileID1, '%.10f %.10f %.10f %10f \n', PoseRT1(j,1), PoseRT1(j,2), PoseRT1(j,3), PoseRT1(j,4));
+    end
+    fclose(fileID1);
+    
+end
